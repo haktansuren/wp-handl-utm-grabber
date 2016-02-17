@@ -3,8 +3,8 @@ Contributors: haktansuren
 Donate link: http://www.haktansuren.com/
 Tags: utm,grabber,shortcodes,gclid
 Requires at least: 3.0.1
-Tested up to: 4.3.1
-Stable tag: 4.3.1
+Tested up to: 4.4.2
+Stable tag: 4.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,9 @@ This section describes how to install the plugin and get it working.
 = 1.1 =
 * Shortcodes changed to support form input
 * World's most effective written code :)
+
+= 1.2 =
+* BugFix for https://wordpress.org/support/topic/contact-form-7-form-submission-hangs-when-utm-grabber-plugin-is-enabled (Thanks wpkmi)
 
 == Upgrade Notice ==
 
