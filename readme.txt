@@ -64,6 +64,9 @@ This section describes how to install the plugin and get it working.
 = 1.2 =
 * BugFix for https://wordpress.org/support/topic/contact-form-7-form-submission-hangs-when-utm-grabber-plugin-is-enabled (Thanks wpkmi)
 
+= 1.3 =
+* BugFix for https://wordpress.org/support/topic/handl-not-working (Thanks eddygbarrett)
+
 == Upgrade Notice ==
 
 = 1.0 =
