@@ -4,9 +4,11 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/wp-plugins/handl-utm-grabber
 Description: This is for getting the google UTM parameters (including gclid) and store it in cookies and then you can access within anywhere your WP installs with shortcodes.
 Author: Haktan Suren
-Version: 1.2
+Version: 1.4
 Author URI: http://www.haktansuren.com/
 */
+
+add_filter('widget_text', 'do_shortcode');
 
 add_action('init', 'CaptureUTMs');
 function CaptureUTMs(){
@@ -27,6 +29,9 @@ function CaptureUTMs(){
 
 		add_shortcode($field, create_function('',"return '$_COOKIE[$field]';"));
 		add_shortcode($field."_i", create_function('$atts,$content,$field','return sprintf($content,$_COOKIE[str_replace("_i","",$field)]);'));
+		
+		//This is for Gravity Forms
+		add_filter( 'gform_field_value_'.$field, create_function('',"return '$_COOKIE[$field]';") );
 	}
 }
 
