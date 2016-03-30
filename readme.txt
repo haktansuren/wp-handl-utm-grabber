@@ -1,6 +1,6 @@
 === HandL UTM Grabber ===
 Contributors: haktansuren
-Donate link: http://www.haktansuren.com/
+Donate link: https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=k3AguYxzB-opjMCsH9X-Y9OJ9swGFb3epjYvKAaRlX8J5TfdycaYkRGVzOq&dispatch=5885d80a13c0db1f8e263663d3faee8d6625bf1e8bd269586d425cc639e26c6a
 Tags: utm,grabber,shortcodes,gclid
 Requires at least: 3.0.1
 Tested up to: 4.4.2
@@ -36,6 +36,9 @@ This is very useful for populating customer fields in emarketing tools via optin
 
 Let me know if you have any question. Feel free to contact me if you have cool ideas and want me to implement :)
 
+**Support For Gravity Forms**
+
+Simply create your field and assign the UTM shortcodes name above as *Paramater Name*. See screenshot for more. 
 
 == Installation ==
 
@@ -51,6 +54,7 @@ This section describes how to install the plugin and get it working.
 == Screenshots ==
 
 1. It should look like this after install.
+1. Gravity Form Support.
 
 == Changelog ==
 
@@ -66,6 +70,9 @@ This section describes how to install the plugin and get it working.
 
 = 1.3 =
 * BugFix for https://wordpress.org/support/topic/handl-not-working (Thanks eddygbarrett)
+
+= 1.4 =
+* Gravity Forms support added - https://wordpress.org/support/topic/gravity-forms-45 (Thanks hashimwarren)
 
 == Upgrade Notice ==
 
