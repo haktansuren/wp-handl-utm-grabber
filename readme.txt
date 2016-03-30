@@ -1,6 +1,6 @@
 === HandL UTM Grabber ===
 Contributors: haktansuren
-Donate link: https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=k3AguYxzB-opjMCsH9X-Y9OJ9swGFb3epjYvKAaRlX8J5TfdycaYkRGVzOq&dispatch=5885d80a13c0db1f8e263663d3faee8d6625bf1e8bd269586d425cc639e26c6a
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,grabber,shortcodes,gclid
 Requires at least: 3.0.1
 Tested up to: 4.4.2
