@@ -38,7 +38,9 @@ Let me know if you have any question. Feel free to contact me if you have cool i
 
 **Support For Gravity Forms**
 
-Simply create your field and assign the UTM shortcodes name above as *Paramater Name*. See screenshot for more. 
+Simply create your field and assign the UTM shortcodes name above as *Paramater Name*. See screenshot for more.
+
+**SPECIAL THANKS:** This plugin has been tested on various operating systems and browsers thanks to <a href='https://www.browserstack.com'>BrowserStack!</a> 
 
 == Installation ==
 
