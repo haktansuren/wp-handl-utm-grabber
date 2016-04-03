@@ -2,9 +2,9 @@
 /*
 Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/wp-plugins/handl-utm-grabber
-Description: This is for getting the google UTM parameters (including gclid) and store it in cookies and then you can access within anywhere your WP installs with shortcodes.
+Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 1.4
+Version: 2.0
 Author URI: http://www.haktansuren.com/
 */
 
@@ -34,5 +34,24 @@ function CaptureUTMs(){
 		add_filter( 'gform_field_value_'.$field, create_function('',"return '$_COOKIE[$field]';") );
 	}
 }
+
+function HandLAddJSinFooter(){
+	wp_enqueue_script( 'js.cookie', plugins_url( '/js/js.cookie.js' , __FILE__ ), array( 'jquery' ) );
+	$js = "
+	<!-- HandL UTM Grabber Footer Script Start -->
+	<script>
+	jQuery(function($) {
+		$.each([ 'utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid' ], function( i,v ) {
+			$('input[name=\"'+v+'\"]').val(Cookies.get(v))
+			$('input#'+v).val(Cookies.get(v))
+			$('input.'+v).val(Cookies.get(v))
+		});
+	});
+	</script>
+	<!-- HandL UTM Grabber Footer Script End -->
+	";
+	print $js;
+}
+add_action( 'wp_footer', 'HandLAddJSinFooter' );
 
 ?>
