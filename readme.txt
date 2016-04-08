@@ -75,6 +75,7 @@ This section describes how to install the plugin and get it working.
 
 1. It should look like this after install.
 1. Gravity Form Support.
+1. Salesforce Support.
 
 == Changelog ==
 
@@ -96,6 +97,9 @@ This section describes how to install the plugin and get it working.
 
 = 2.0 =
 * Hassle Free Implementation (No Shortcode)
+
+= 2.1 =
+* Shortcode support for CF7 and Salesforce (Thanks to jenrstretch and wpkmi)
 
 == Upgrade Notice ==
 
