@@ -1,11 +1,12 @@
 <?php
 /*
 Plugin Name: HandL UTM Grabber
-Plugin URI: http://www.haktansuren.com/wp-plugins/handl-utm-grabber
+Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.1
+Version: 2.2
 Author URI: http://www.haktansuren.com/
+Tags: UTM, utm capture, lead tracking 
 */
 
 add_filter('widget_text', 'do_shortcode');
@@ -13,7 +14,21 @@ add_filter('widget_text', 'do_shortcode');
 add_action('init', 'CaptureUTMs');
 function CaptureUTMs(){
        
-	$fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid');
+	if (!isset($_COOKIE['handl_original_ref'])) 
+		$_COOKIE['handl_original_ref'] = $_SERVER['HTTP_REFERER']; 
+
+	if (!isset($_COOKIE['handl_landing_page'])) 
+		$_COOKIE['handl_landing_page'] = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+	
+	if($_SERVER["HTTP_X_FORWARDED_FOR"] != "")
+		$_COOKIE['handl_ip'] = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	else
+		$_COOKIE['handl_ip'] = $_SERVER["REMOTE_ADDR"];
+	
+	$_COOKIE['handl_ref'] =  $_SERVER['HTTP_REFERER'];
+	$_COOKIE['handl_url'] =  isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];;
+	
+	$fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid', 'handl_original_ref', 'handl_landing_page', 'handl_ip', 'handl_ref', 'handl_url');
        
         $cookie_field = '';
 	foreach ($fields as $id=>$field){
@@ -59,4 +74,35 @@ function handl_utm_grabber_enable_shortcode($val){
 }
 add_filter('salesforce_w2l_field_value', 'handl_utm_grabber_enable_shortcode');
 add_filter( 'wpcf7_form_elements', 'handl_utm_grabber_enable_shortcode' );
-?>
+
+function handl_admin_notice__success() {
+    $field = 'check_v22_doc';
+    if (!get_option($field)) :
+    ?>
+    <div class="update-nag notice handl-notice-dismiss is-dismissible">
+        <p>HandL UTM Grabber has some new features. We highly encourage you to check out our plugin <a href="http://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Features" target="_blank"><b>website.</b></a></p>
+    </div>
+    <script>
+    jQuery(document).on( 'click', '.handl-notice-dismiss', function() {
+	
+	jQuery.post(
+		ajaxurl, 
+		{
+		    'action': 'handl_notice_dismiss',
+		    'field':   '<?=$field;?>'
+		}
+	);
+    
+    })
+    </script>
+    <?php
+    endif;
+}
+add_action( 'admin_notices', 'handl_admin_notice__success' );
+
+function handl_notice_dismiss(){
+	add_option( $_POST['field'], '1', '', 'yes' ); 
+	die();
+}
+add_action( 'wp_ajax_handl_notice_dismiss', 'handl_notice_dismiss' );
+?>	

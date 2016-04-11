@@ -12,51 +12,19 @@ The easiest (we mean it!) way to capture UTMs on your (optin) forms.
 
 == Description ==
 
-Major features in HandL UTM Grabber include:
+> #### Major features in HandL UTM Grabber include:
+>
+> * Add hidden fields in your forms (incl. Contact Form 7, Gravity Forms, WordPress-to-lead for Salesforce CRM, Ninja Forms)
+> * Pass UTM variables to major marketing tools such as ActiveCampaign, Vero, Aweber, Interspire and many more...
+> * Hassle free implementation (no shortcodes). See below...   
 
-* Add hidden fields in your forms (incl. Contact Form 7, Gravity Form)
-* Pass UTM variables to major marketing tools such as ActiveCampaign, Vero, Aweber, Interspire and many more...
-* Hassle free implementation (no shortcodes). See below...   
+[Check out the documentation](http://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=wordpress.org&utm_campaign=HandL+UTM+Grabber+Readme&utm_content=Documentation)
 
-**New - Hassle Free Implementation (No Shortcode)**
+= HandL UTM Grabber Needs Your Support =
 
-Upon ativation of this plugin, it will fill the elements named "utm_source, utm_medium, utm_term, utm_content, utm_campaign, gclid" AUTOMAGICALLY! (by element name, id and class)
+It is hard to continue development and support for this free plugin without contributions from users like you. If you enjoy using HandL UTM Grabber, find it useful and want us to develop further, please consider [__making a donation__](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG).
 
-Simple Examples:
-`
-<input type="hidden" name="utm_campaign" />
-<input type="hidden" name="foo" id="utm_campaign" />
-<input type="hidden" name="foo" class="utm_campaign" />
-`
-
-With this very simple yet useful plugin, you can capture UTM variables from URL and save it in browser's COOKIE and you can access the recorded UTM anywhere in the website with following shortcodes.
-
-* [utm_campaign]
-* [utm_source]
-* [utm_term]
-* [utm_medium]
-* [utm_content]
-* [gclid]
-
-This plugin is also very useful if you would like to pass UTM variables across different WP installs. You can do the following.
-
-`<a href="www.destinationURL.com?utm_campaign=[utm_campaign]&utm_source=[utm_source]&utm_term=[utm_term]&utm_content=[utm_content]&gclid=[gclid]">Click Here To Go >>> </a>`
-
-Or you can pass UTM variables to your form as hidden input. Make sure to switch HTML in editor before using the shortcodes. You will need to use different shortcodes for passing UTM and GCLID variables into the form as follows;
-
-` [utm_campaign_i]<input type="hidden" name="utm_campaign" value="%s" />[/utm_campaign_i]`
-` [utm_source_i]<input type="hidden" name="utm_source" value="%s" />[/utm_source_i]`
-` [utm_term_i]<input type="hidden" name="utm_term" value="%s" />[/utm_term_i]`
-` [utm_content_i]<input type="hidden" name="utm_content" value="%s" />[/utm_content_i] `
-` [gclid_i]<input type="hidden" name="gclid" value="%s" />[/gclid_i] `
-
-This is very useful for populating customer fields in marketing tools via optin forms such as ActiveCampaign, Vero, Aweber etc.
-
-Let me know if you have any question. Feel free to contact me if you have cool ideas and want me to implement :)
-
-**Support For Gravity Forms**
-
-Simply create your field and assign the UTM shortcodes name above as *Paramater Name*. See screenshot for more.
+Please [review](https://wordpress.org/support/view/plugin-reviews/handl-utm-grabber#postform) if you like the plugin!
 
 **SPECIAL THANKS:** This plugin has been tested on various operating systems and browsers thanks to <a href='https://www.browserstack.com'>BrowserStack!</a> 
 
@@ -100,6 +68,9 @@ This section describes how to install the plugin and get it working.
 
 = 2.1 =
 * Shortcode support for CF7 and Salesforce (Thanks to jenrstretch and wpkmi)
+
+= 2.2 =
+* New shortcodes added for leads tracking (e.g. Original Referral URL, Referral URL, IP, Landing Page etc.)
 
 == Upgrade Notice ==
 
