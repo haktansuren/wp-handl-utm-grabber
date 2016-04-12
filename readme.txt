@@ -72,6 +72,9 @@ This section describes how to install the plugin and get it working.
 = 2.2 =
 * New shortcodes added for leads tracking (e.g. Original Referral URL, Referral URL, IP, Landing Page etc.)
 
+= 2.3 =
+* Fix for php close tag at the end of the file. 
+
 == Upgrade Notice ==
 
 = 1.0 =

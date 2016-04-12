@@ -4,9 +4,8 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.2
+Version: 2.3
 Author URI: http://www.haktansuren.com/
-Tags: UTM, utm capture, lead tracking 
 */
 
 add_filter('widget_text', 'do_shortcode');
@@ -105,4 +104,3 @@ function handl_notice_dismiss(){
 	die();
 }
 add_action( 'wp_ajax_handl_notice_dismiss', 'handl_notice_dismiss' );
-?>	
