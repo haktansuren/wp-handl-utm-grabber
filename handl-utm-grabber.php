@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.3
+Version: 2.4
 Author URI: http://www.haktansuren.com/
 */
 
@@ -42,7 +42,7 @@ function CaptureUTMs(){
 		$_COOKIE[$field] = $cookie_field;
 
 		add_shortcode($field, create_function('',"return '$_COOKIE[$field]';"));
-		add_shortcode($field."_i", create_function('$atts,$content,$field','return sprintf($content,$_COOKIE[str_replace("_i","",$field)]);'));
+		add_shortcode($field."_i", create_function('$atts,$content,$field','return sprintf($content,$_COOKIE[preg_replace("/_i$/","",$field)]);'));
 		
 		//This is for Gravity Forms
 		add_filter( 'gform_field_value_'.$field, create_function('',"return '$_COOKIE[$field]';") );
@@ -75,14 +75,46 @@ add_filter('salesforce_w2l_field_value', 'handl_utm_grabber_enable_shortcode');
 add_filter( 'wpcf7_form_elements', 'handl_utm_grabber_enable_shortcode' );
 
 function handl_admin_notice__success() {
-    $field = 'check_v22_doc';
+    $field = 'check_v24_doc';
     if (!get_option($field)) :
     ?>
-    <div class="update-nag notice handl-notice-dismiss is-dismissible">
-        <p>HandL UTM Grabber has some new features. We highly encourage you to check out our plugin <a href="http://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Features" target="_blank"><b>website.</b></a></p>
+    <style>
+    .handl-notice-dismiss{
+	border-color: #ED494D;
+	display: block;
+	background-color: #FFF8D7;
+    }
+    
+    .handl-notice-title{
+	font-size: 24px;
+    }
+    
+    .handl-notice-list li{
+	float: left;
+	margin-right: 20px;
+    }
+    
+    .handl-notice-list li a{
+	color: #ED494D;
+    }
+    
+    .handl-notice-list:after{
+	clear: both;
+	content: "";
+	display: block;
+    }
+    </style>
+    <div class="notice notice-warning handl-notice-dismiss is-dismissible">
+        <p class='handl-notice-title'>HandL UTM Grabber has some new features...</p>
+	<ul class='handl-notice-list'>
+		<li><span class="dashicons dashicons-clipboard"></span> <a href="http://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Features" target="_blank">Check out documentations</a></li>
+		<li><span class="dashicons dashicons-sos"></span> <a href="https://wordpress.org/support/plugin/handl-utm-grabber" target="_blank">Get Some Help</a></li>
+		<li><span class="dashicons dashicons-heart"></span> <a href="https://wordpress.org/support/view/plugin-reviews/handl-utm-grabber" target="_blank">Like Us!</a></li>
+		<li><span class="dashicons dashicons-smiley"></span> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG" target="_blank">Donate</a></li>
+	</ul>
     </div>
     <script>
-    jQuery(document).on( 'click', '.handl-notice-dismiss', function() {
+    jQuery(document).on( 'click', '.handl-notice-dismiss>.notice-dismiss', function() {
 	
 	jQuery.post(
 		ajaxurl, 
@@ -100,7 +132,7 @@ function handl_admin_notice__success() {
 add_action( 'admin_notices', 'handl_admin_notice__success' );
 
 function handl_notice_dismiss(){
-	add_option( $_POST['field'], '1', '', 'yes' ); 
+	add_option( $_POST['field'], '1', '', 'yes' ) or update_option($_POST['field'], '1'); 
 	die();
 }
 add_action( 'wp_ajax_handl_notice_dismiss', 'handl_notice_dismiss' );
