@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.4
+Version: 2.5
 Author URI: http://www.haktansuren.com/
 */
 
@@ -74,8 +74,95 @@ function handl_utm_grabber_enable_shortcode($val){
 add_filter('salesforce_w2l_field_value', 'handl_utm_grabber_enable_shortcode');
 add_filter( 'wpcf7_form_elements', 'handl_utm_grabber_enable_shortcode' );
 
+
+function handl_utm_grabber_menu() {
+	add_options_page( 
+		'HandL UTM Grabber',
+		'HandL UTM Grabber',
+		'manage_options',
+		'handl-utm-grabber.php',
+		'handl_utm_grabber_menu_page'
+	);
+	add_action( 'admin_init', 'register_handl_utm_grabber_settings' );
+}
+add_action( 'admin_menu', 'handl_utm_grabber_menu' );
+
+function register_handl_utm_grabber_settings() {
+	register_setting( 'handl-utm-grabber-settings-group', 'hug_append_all' );
+}
+
+function handl_utm_grabber_menu_page(){
+?>
+	<div class='wrap'>
+		<h2><span class="dashicons dashicons-admin-settings" style='line-height: 1.1;font-size: 30px; padding-right: 10px;'></span> HandL UTM Grabber</h2>
+		<form method='post' action='options.php'>
+			<?php settings_fields( 'handl-utm-grabber-settings-group' ); ?>
+			<?php do_settings_sections( 'handl-utm-grabber-settings-group' ); ?>
+			<table class='form-table'>
+				<tr>
+					<th scope='row'>Append UTM</th>
+					<td>
+						<fieldset>
+							<legend class='screen-reader-text'>
+								<span>Append UTM</span>
+							</legend>
+							<label for='hug_append_all'>
+								<input name='hug_append_all' id='hug_append_all' type='checkbox' value='1' <?=checked( '1', get_option( 'hug_append_all' ) ) ?> />
+								Append UTM variables to all the links automatically (BETA)
+							</label>
+							<p class='description' id='handl-utm-grabber-append-all-description'>This feature is still in BETA, please give us feedback <a target='blank' href='https://www.haktansuren.com/handl-utm-grabber/?utm_campaign=HandL+UTM+Grabber+Feedback&utm_content=Append+All+Feedback#reply-title'>here</a></p>
+						</fieldset>
+					</td>
+					
+				</tr>
+			</table>
+
+			<p>
+			<?php submit_button(); ?>
+		</form>
+	
+	</div>
+<?
+}
+
+function HUG_Append_All($content) {  
+  if ($content != '' && get_option( 'hug_append_all' ) == 1 ){
+    if (!function_exists('str_get_html'))
+      require_once('simple_html_dom.php');
+    $html = str_get_html($content);
+    
+    $as = $html->find('a');
+    
+    $search = array();
+    $replace = array();
+    foreach ($as as $a){
+
+      $a_original = $a->href;
+      
+      if ($a_original == '') continue;
+      if (preg_match('/javascript:void/',$a_original)) continue;
+
+      $search[] = "/['\"]".preg_quote($a_original,'/')."['\"]/";
+      $replace[] = add_query_arg( HUGGenerateUTMsForURL(), html_entity_decode($a_original) );
+    }
+    $content = preg_replace($search, $replace, $content);
+  }
+  return $content;
+}
+add_filter( 'the_content', 'HUG_Append_All', 999 );
+
+function HUGGenerateUTMsForURL(){
+  $fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid');
+  $utms = array();
+  foreach ($fields as $id=>$field){
+    if (isset($_COOKIE[$field]) && $_COOKIE[$field] != '')
+      $utms[$field] = $_COOKIE[$field];
+  }
+  return $utms;
+}
+
 function handl_admin_notice__success() {
-    $field = 'check_v24_doc';
+    $field = 'check_v25_doc';
     if (!get_option($field)) :
     ?>
     <style>
@@ -96,6 +183,7 @@ function handl_admin_notice__success() {
     
     .handl-notice-list li a{
 	color: #ED494D;
+	text-decoration: none;
     }
     
     .handl-notice-list:after{
@@ -103,15 +191,25 @@ function handl_admin_notice__success() {
 	content: "";
 	display: block;
     }
+    
+    .handl-notice-dismiss .new-plugin{
+	font-size: 20px;
+	line-height: 1;
+    }
+    
+    .handl-notice-dismiss .new-plugin a{
+	text-decoration: none;
+    }
     </style>
     <div class="notice notice-warning handl-notice-dismiss is-dismissible">
         <p class='handl-notice-title'>HandL UTM Grabber has some new features...</p>
 	<ul class='handl-notice-list'>
-		<li><span class="dashicons dashicons-clipboard"></span> <a href="http://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Features" target="_blank">Check out documentations</a></li>
+		<li><span class="dashicons dashicons-clipboard"></span> <a href="https://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Features" target="_blank">Check out documentations</a></li>
 		<li><span class="dashicons dashicons-sos"></span> <a href="https://wordpress.org/support/plugin/handl-utm-grabber" target="_blank">Get Some Help</a></li>
 		<li><span class="dashicons dashicons-heart"></span> <a href="https://wordpress.org/support/view/plugin-reviews/handl-utm-grabber" target="_blank">Like Us!</a></li>
 		<li><span class="dashicons dashicons-smiley"></span> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG" target="_blank">Donate</a></li>
 	</ul>
+	<p class='new-plugin'><span class="dashicons dashicons-video-alt3"></span> <a href="https://www.haktansuren.com/handl-youtube-extra/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Plugin+HandL+YouTube+Extra" target="_blank">New Plugin! Track your YouTube videos</a></p>
     </div>
     <script>
     jQuery(document).on( 'click', '.handl-notice-dismiss>.notice-dismiss', function() {
