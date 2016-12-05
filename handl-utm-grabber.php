@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.1
+Version: 2.5.2
 Author URI: http://www.haktansuren.com/
 */
 
@@ -107,7 +107,7 @@ function handl_utm_grabber_menu_page(){
 								<span>Append UTM</span>
 							</legend>
 							<label for='hug_append_all'>
-								<input name='hug_append_all' id='hug_append_all' type='checkbox' value='1' <?=checked( '1', get_option( 'hug_append_all' ) ) ?> />
+								<input name='hug_append_all' id='hug_append_all' type='checkbox' value='1' <?php print checked( '1', get_option( 'hug_append_all' ) ) ?> />
 								Append UTM variables to all the links automatically (BETA)
 							</label>
 							<p class='description' id='handl-utm-grabber-append-all-description'>This feature is still in BETA, please give us feedback <a target='blank' href='https://www.haktansuren.com/handl-utm-grabber/?utm_campaign=HandL+UTM+Grabber+Feedback&utm_content=Append+All+Feedback#reply-title'>here</a></p>
@@ -122,7 +122,7 @@ function handl_utm_grabber_menu_page(){
 		</form>
 	
 	</div>
-<?
+<?php
 }
 
 function HUG_Append_All($content) {  
@@ -162,8 +162,8 @@ function HUGGenerateUTMsForURL(){
 }
 
 function handl_admin_notice__success() {
-    $field = 'check_v25_doc';
-    if (!get_option($field)) :
+    $field = 'check_v252_doc';
+    if (!get_option($field)) {
     ?>
     <style>
     .handl-notice-dismiss{
@@ -204,12 +204,13 @@ function handl_admin_notice__success() {
     <div class="notice notice-warning handl-notice-dismiss is-dismissible">
         <p class='handl-notice-title'>HandL UTM Grabber has some new features...</p>
 	<ul class='handl-notice-list'>
-		<li><span class="dashicons dashicons-clipboard"></span> <a href="https://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Features" target="_blank">Check out documentations</a></li>
+		<li><span class="dashicons dashicons-clipboard"></span> <a href="https://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=<?php print $_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Features" target="_blank">Check out documentations</a></li>
 		<li><span class="dashicons dashicons-sos"></span> <a href="https://wordpress.org/support/plugin/handl-utm-grabber" target="_blank">Get Some Help</a></li>
 		<li><span class="dashicons dashicons-heart"></span> <a href="https://wordpress.org/support/view/plugin-reviews/handl-utm-grabber" target="_blank">Like Us!</a></li>
 		<li><span class="dashicons dashicons-smiley"></span> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG" target="_blank">Donate</a></li>
 	</ul>
-	<p class='new-plugin'><span class="dashicons dashicons-video-alt3"></span> <a href="https://www.haktansuren.com/handl-youtube-extra/?utm_medium=referral&utm_source=<?=$_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Plugin+HandL+YouTube+Extra" target="_blank">New Plugin! Track your YouTube videos</a></p>
+	<p><span class="dashicons dashicons-info"></span> <a href="options-general.php?page=handl-utm-grabber.php">Would you like to append UTM variables to all URLs on your site?</a></p>
+	<p class='new-plugin'><span class="dashicons dashicons-video-alt3"></span> <a href="https://www.haktansuren.com/handl-youtube-extra/?utm_medium=referral&utm_source=<?php print $_SERVER["SERVER_NAME"]?>&utm_campaign=HandL+UTM+Grabber&utm_content=New+Plugin+HandL+YouTube+Extra" target="_blank">New Plugin! Track your YouTube videos</a></p>
     </div>
     <script>
     jQuery(document).on( 'click', '.handl-notice-dismiss>.notice-dismiss', function() {
@@ -218,14 +219,14 @@ function handl_admin_notice__success() {
 		ajaxurl, 
 		{
 		    'action': 'handl_notice_dismiss',
-		    'field':   '<?=$field;?>'
+		    'field':   '<?php print $field;?>'
 		}
 	);
     
     })
     </script>
     <?php
-    endif;
+	}
 }
 add_action( 'admin_notices', 'handl_admin_notice__success' );
 
