@@ -2,7 +2,7 @@
 Contributors: haktansuren
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,grabber,shortcodes,gclid
-Tested up to: 4.6.1
+Tested up to: 4.7
 Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
