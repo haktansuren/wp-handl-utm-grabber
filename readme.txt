@@ -1,19 +1,19 @@
 === HandL UTM Grabber ===
 Contributors: haktansuren
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
-Tags: utm,grabber,shortcodes,gclid
-Tested up to: 4.7
-Stable tag: 2.5.2
+Tags: utm,grabber,shortcodes,gclid,contact form 7,leads,collect,collect leads
+Tested up to: 4.7.2
+Stable tag: 2.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The easiest (we mean it!) way to capture UTMs on your (optin) forms.
+The easiest (we mean it!) way to capture UTMs on your (optin) forms. Supports: Contact Form 7, Gravity Forms, Ninja Forms, Salesforce, ActiveCampaign.
 
 == Description ==
 
 > #### Major features in HandL UTM Grabber include:
 >
-> * Add hidden fields in your forms (incl. Contact Form 7, Gravity Forms, WordPress-to-lead for Salesforce CRM, Ninja Forms)
+> * Add hidden fields in your forms (incl. Contact Form 7, Gravity Forms, WordPress-to-lead for Salesforce CRM, Ninja Forms, ActiveCampaign, Caldera Forms, WooCommerce and many more.)
 > * Pass UTM variables to major marketing tools such as ActiveCampaign, Vero, Aweber, Interspire and many more...
 > * Hassle free implementation (no shortcodes). See below...   
 
@@ -24,6 +24,8 @@ The easiest (we mean it!) way to capture UTMs on your (optin) forms.
 It is hard to continue development and support for this free plugin without contributions from users like you. If you enjoy using HandL UTM Grabber, find it useful and want us to develop further, please consider [__making a donation__](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG).
 
 Please [review](https://wordpress.org/support/view/plugin-reviews/handl-utm-grabber#postform) if you like the plugin!
+
+Question/Problem/Support join our slack channel. [Reply to this post to get an invite](https://www.haktansuren.com/handl-utm-grabber/).
 
 **SPECIAL THANKS:** This plugin has been tested on various operating systems and browsers thanks to <a href='https://www.browserstack.com'>BrowserStack!</a> 
 
@@ -46,6 +48,9 @@ This section describes how to install the plugin and get it working.
 1. Append UTM variables to all URLs automatically.
 
 == Changelog ==
+
+= 2.5.3 =
+* WooCommerce support: All parameters (UTM and others) are appended to the corresponding order's meta when available. 
 
 = 2.5 =
 * One click to aappend UTM variables to all the links on your site. 

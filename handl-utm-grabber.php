@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.2
+Version: 2.5.3
 Author URI: http://www.haktansuren.com/
 */
 
@@ -160,6 +160,15 @@ function HUGGenerateUTMsForURL(){
   }
   return $utms;
 }
+
+function HandLUTMGrabberWooCommerceUpdateOrderMeta( $order_id ) {
+	$fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid', 'handl_original_ref', 'handl_landing_page', 'handl_ip', 'handl_ref', 'handl_url');
+	foreach ($fields as $field){
+		if (isset($_COOKIE[$field]) && $_COOKIE[$field] != '')
+		update_post_meta( $order_id, $field, esc_attr($_COOKIE[$field]));
+	}
+}
+add_action('woocommerce_checkout_update_order_meta', 'HandLUTMGrabberWooCommerceUpdateOrderMeta');
 
 function handl_admin_notice__success() {
     $field = 'check_v252_doc';
