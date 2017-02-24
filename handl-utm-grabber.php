@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.3
+Version: 2.5.4
 Author URI: http://www.haktansuren.com/
 */
 
@@ -74,6 +74,10 @@ function handl_utm_grabber_enable_shortcode($val){
 add_filter('salesforce_w2l_field_value', 'handl_utm_grabber_enable_shortcode');
 add_filter( 'wpcf7_form_elements', 'handl_utm_grabber_enable_shortcode' );
 
+function handl_utm_grabber_couponhunt_theme_support($value, $post_id, $field){
+	return add_query_arg( HUGGenerateUTMsForURL(), $value );
+}
+add_filter( "acf/load_value/name=url", "handl_utm_grabber_couponhunt_theme_support", 10, 3);
 
 function handl_utm_grabber_menu() {
 	add_options_page( 
