@@ -50,7 +50,7 @@ This section describes how to install the plugin and get it working.
 == Changelog ==
 
 = 2.5.4 =
-* Added CouponHut support https://wordpress.org/support/topic/append-to-all-urls-works-only-partially/ (Thanks zizzi17)
+* Added CouponHut theme support https://wordpress.org/support/topic/append-to-all-urls-works-only-partially/ (Thanks zizzi17)
 
 = 2.5.3 =
 * WooCommerce support: All parameters (UTM and others) are appended to the corresponding order's meta when available. 
