@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.4
+Version: 2.5.5
 Author URI: http://www.haktansuren.com/
 */
 
@@ -49,24 +49,11 @@ function CaptureUTMs(){
 	}
 }
 
-function HandLAddJSinFooter(){
+function handl_utm_grabber_enqueue(){
 	wp_enqueue_script( 'js.cookie', plugins_url( '/js/js.cookie.js' , __FILE__ ), array( 'jquery' ) );
-	$js = "
-	<!-- HandL UTM Grabber Footer Script Start -->
-	<script>
-	jQuery(function($) {
-		$.each([ 'utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid' ], function( i,v ) {
-			$('input[name=\"'+v+'\"]').val(Cookies.get(v))
-			$('input#'+v).val(Cookies.get(v))
-			$('input.'+v).val(Cookies.get(v))
-		});
-	});
-	</script>
-	<!-- HandL UTM Grabber Footer Script End -->
-	";
-	print $js;
+	wp_enqueue_script( 'handl-utm-grabber', plugins_url( '/js/handl-utm-grabber.js' , __FILE__ ), array( 'jquery','js.cookie' ) );
 }
-add_action( 'wp_footer', 'HandLAddJSinFooter' );
+add_action( 'wp_enqueue_scripts', 'handl_utm_grabber_enqueue' );
 
 function handl_utm_grabber_enable_shortcode($val){
 	return do_shortcode($val);
@@ -173,6 +160,12 @@ function HandLUTMGrabberWooCommerceUpdateOrderMeta( $order_id ) {
 	}
 }
 add_action('woocommerce_checkout_update_order_meta', 'HandLUTMGrabberWooCommerceUpdateOrderMeta');
+
+//ConvertPlug UTM Support
+//function handl_utm_grabber_setting($a){
+//	return do_shortcode($a); 
+//}
+//add_filter('smile_render_setting', 'handl_utm_grabber_setting',10,1);
 
 function handl_admin_notice__success() {
     $field = 'check_v252_doc';

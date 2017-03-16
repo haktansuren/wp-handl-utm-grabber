@@ -2,8 +2,8 @@
 Contributors: haktansuren
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,grabber,shortcodes,gclid,contact form 7,leads,collect,collect leads
-Tested up to: 4.7.2
-Stable tag: 2.5.4
+Tested up to: 4.7.3
+Stable tag: 2.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ It is hard to continue development and support for this free plugin without cont
 
 Please [review](https://wordpress.org/support/view/plugin-reviews/handl-utm-grabber#postform) if you like the plugin!
 
-Question/Problem/Support join our slack channel. [Reply to this post to get an invite](https://www.haktansuren.com/handl-utm-grabber/).
+Question/Problem/Support join our [slack channel](https://www.haktansuren.com/slack-handlwp/).
 
 **SPECIAL THANKS:** This plugin has been tested on various operating systems and browsers thanks to <a href='https://www.browserstack.com'>BrowserStack!</a> 
 
@@ -49,8 +49,11 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 2.5.5 =
+* Fix for the JS in footer for website uses minify JS (Thanks [sylvainww](https://wordpress.org/support/topic/plugin-adds-uncaught-referenceerror-2/))
+
 = 2.5.4 =
-* Added CouponHut theme support https://wordpress.org/support/topic/append-to-all-urls-works-only-partially/ (Thanks zizzi17)
+* Added CouponHut theme support (Thanks [zizzi17](https://wordpress.org/support/topic/append-to-all-urls-works-only-partially/))
 
 = 2.5.3 =
 * WooCommerce support: All parameters (UTM and others) are appended to the corresponding order's meta when available. 
@@ -71,13 +74,13 @@ This section describes how to install the plugin and get it working.
 * Hassle Free Implementation (No Shortcode)
 
 = 1.4 =
-* Gravity Forms support added - https://wordpress.org/support/topic/gravity-forms-45 (Thanks hashimwarren)
+* Gravity Forms support added (Thanks [hashimwarren](https://wordpress.org/support/topic/gravity-forms-45 ))
 
 = 1.3 =
-* BugFix for https://wordpress.org/support/topic/handl-not-working (Thanks eddygbarrett)
+* BugFix for Text Widget (Thanks [eddygbarrett](https://wordpress.org/support/topic/handl-not-working))
 
 = 1.2 =
-* BugFix for https://wordpress.org/support/topic/contact-form-7-form-submission-hangs-when-utm-grabber-plugin-is-enabled (Thanks wpkmi)
+* BugFix for Contact Form 7 (Thanks [wpkmi](https://wordpress.org/support/topic/contact-form-7-form-submission-hangs-when-utm-grabber-plugin-is-enabled))
 
 = 1.1 =
 * Shortcodes changed to support form input
