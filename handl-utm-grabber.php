@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.5
+Version: 2.5.6
 Author URI: http://www.haktansuren.com/
 */
 
@@ -27,7 +27,7 @@ function CaptureUTMs(){
 	$_COOKIE['handl_ref'] =  $_SERVER['HTTP_REFERER'];
 	$_COOKIE['handl_url'] =  isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];;
 	
-	$fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid', 'handl_original_ref', 'handl_landing_page', 'handl_ip', 'handl_ref', 'handl_url');
+	$fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid', 'handl_original_ref', 'handl_landing_page', 'handl_ip', 'handl_ref', 'handl_url', 'email', 'username');
        
         $cookie_field = '';
 	foreach ($fields as $id=>$field){
@@ -41,11 +41,11 @@ function CaptureUTMs(){
 		setcookie($field, $cookie_field , time()+60*60*24*30, '/' );
 		$_COOKIE[$field] = $cookie_field;
 
-		add_shortcode($field, create_function('',"return '$_COOKIE[$field]';"));
-		add_shortcode($field."_i", create_function('$atts,$content,$field','return sprintf($content,$_COOKIE[preg_replace("/_i$/","",$field)]);'));
+		add_shortcode($field, create_function('',"return urldecode('$_COOKIE[$field]');"));
+		add_shortcode($field."_i", create_function('$atts,$content,$field','return sprintf($content,urldecode($_COOKIE[preg_replace("/_i$/","",$field)]));'));
 		
 		//This is for Gravity Forms
-		add_filter( 'gform_field_value_'.$field, create_function('',"return '$_COOKIE[$field]';") );
+		add_filter( 'gform_field_value_'.$field, create_function('',"return urldecode('$_COOKIE[$field]');") );
 	}
 }
 
@@ -166,6 +166,14 @@ add_action('woocommerce_checkout_update_order_meta', 'HandLUTMGrabberWooCommerce
 //	return do_shortcode($a); 
 //}
 //add_filter('smile_render_setting', 'handl_utm_grabber_setting',10,1);
+
+function handl_utm_nav_menu_link_attributes($atts, $item, $args, $depth){
+	if (isset($atts['href']) && $atts['href'] != ''){
+		$atts['href'] = add_query_arg( HUGGenerateUTMsForURL(), $atts['href'] );
+	}
+	return $atts; 
+}
+add_filter('nav_menu_link_attributes', 'handl_utm_nav_menu_link_attributes', 10 ,4);
 
 function handl_admin_notice__success() {
     $field = 'check_v252_doc';
