@@ -3,7 +3,7 @@ Contributors: haktansuren
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,grabber,shortcodes,gclid,contact form 7,leads,collect,collect leads
 Tested up to: 4.7.3
-Stable tag: 2.5.6
+Stable tag: 2.5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ This section describes how to install the plugin and get it working.
 1. Append UTM variables to all URLs automatically.
 
 == Changelog ==
+
+= 2.5.7 =
+* Bug-fix caused by v2.5.7.
 
 = 2.5.6 =
 * Append UTM fix for WP menu, new shortcodes: [username] and [email]
