@@ -12,9 +12,7 @@ The easiest (we mean it!) way to capture UTMs on your (optin) forms. Supports: C
 
 == Description ==
 
-**Capture all the UTM variables (and more)** as soon as user hits your website (ANY page of your WP installation): One great feature of the plugin is the UTM variables are saved in **client’s browser (COOKIES)** and even though there is no UTM variables in URL, the variables can still be accessible via shortcode across any page/widget of your website.
-
-[![HandL UTM Grabber: Contact Form 7 Implementation](https://i.ytimg.com/vi/A4zkZx6ToiY/hqdefault.jpg)](http://www.youtube.com/watch?v=A4zkZx6ToiY)
+**Capture all the UTM variables (and more)** as soon as user hits your website (ANY page of your WP installation): One great feature of the plugin is the UTM variables are saved in **client's browser (COOKIES)** and even though there is no UTM variables in URL, the variables can still be accessible via shortcode across any page/widget of your website.
 
 > #### Major features in HandL UTM Grabber include:
 >
