@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.7
+Version: 2.5.8
 Author URI: http://www.haktansuren.com/
 */
 
@@ -132,6 +132,7 @@ function HUG_Append_All($content) {
       
       if ($a_original == '') continue;
       if (preg_match('/javascript:void/',$a_original)) continue;
+      if (preg_match('/^#/',$a_original)) continue;
 
       $search[] = "/['\"]".preg_quote($a_original,'/')."['\"]/";
       $replace[] = add_query_arg( HUGGenerateUTMsForURL(), html_entity_decode($a_original) );

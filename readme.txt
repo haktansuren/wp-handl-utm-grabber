@@ -2,14 +2,19 @@
 Contributors: haktansuren
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,grabber,shortcodes,gclid,contact form 7,leads,collect,collect leads
+Requires at least: 3.6.0
 Tested up to: 4.7.3
-Stable tag: 2.5.7
+Stable tag: 2.5.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 The easiest (we mean it!) way to capture UTMs on your (optin) forms. Supports: Contact Form 7, Gravity Forms, Ninja Forms, Salesforce, ActiveCampaign.
 
 == Description ==
+
+**Capture all the UTM variables (and more)** as soon as user hits your website (ANY page of your WP installation): One great feature of the plugin is the UTM variables are saved in **client’s browser (COOKIES)** and even though there is no UTM variables in URL, the variables can still be accessible via shortcode across any page/widget of your website.
+
+[![HandL UTM Grabber: Contact Form 7 Implementation](https://i.ytimg.com/vi/A4zkZx6ToiY/hqdefault.jpg)](http://www.youtube.com/watch?v=A4zkZx6ToiY)
 
 > #### Major features in HandL UTM Grabber include:
 >
@@ -48,6 +53,9 @@ This section describes how to install the plugin and get it working.
 1. Append UTM variables to all URLs automatically.
 
 == Changelog ==
+
+= 2.5.8 =
+* Bugfix: Visual Composer Accordion/Tabs fix (Append UTM feature conflict). Thanks [@radasonea](https://wordpress.org/support/topic/accordion-visual-doesnt-work-after-plugin-activates/)   
 
 = 2.5.7 =
 * Bug-fix caused by v2.5.7.
