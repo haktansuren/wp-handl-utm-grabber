@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.8
+Version: 2.5.9
 Author URI: http://www.haktansuren.com/
 */
 
@@ -14,17 +14,17 @@ add_action('init', 'CaptureUTMs');
 function CaptureUTMs(){
        
 	if (!isset($_COOKIE['handl_original_ref'])) 
-		$_COOKIE['handl_original_ref'] = $_SERVER['HTTP_REFERER']; 
+		$_COOKIE['handl_original_ref'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : ''; 
 
 	if (!isset($_COOKIE['handl_landing_page'])) 
 		$_COOKIE['handl_landing_page'] = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 	
-	if($_SERVER["HTTP_X_FORWARDED_FOR"] != "")
+	if(isset($_SERVER["HTTP_X_FORWARDED_FOR"]) && $_SERVER["HTTP_X_FORWARDED_FOR"] != "")
 		$_COOKIE['handl_ip'] = $_SERVER["HTTP_X_FORWARDED_FOR"];
 	else
 		$_COOKIE['handl_ip'] = $_SERVER["REMOTE_ADDR"];
 	
-	$_COOKIE['handl_ref'] =  $_SERVER['HTTP_REFERER'];
+	$_COOKIE['handl_ref'] =  isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : ''; 
 	$_COOKIE['handl_url'] =  isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];;
 	
 	$fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid', 'handl_original_ref', 'handl_landing_page', 'handl_ip', 'handl_ref', 'handl_url', 'email', 'username');
@@ -133,7 +133,7 @@ function HUG_Append_All($content) {
       if ($a_original == '') continue;
       if (preg_match('/javascript:void/',$a_original)) continue;
       if (preg_match('/^#/',$a_original)) continue;
-
+      
       $search[] = "/['\"]".preg_quote($a_original,'/')."['\"]/";
       $replace[] = add_query_arg( HUGGenerateUTMsForURL(), html_entity_decode($a_original) );
     }
@@ -168,13 +168,13 @@ add_action('woocommerce_checkout_update_order_meta', 'HandLUTMGrabberWooCommerce
 //}
 //add_filter('smile_render_setting', 'handl_utm_grabber_setting',10,1);
 
-function handl_utm_nav_menu_link_attributes($atts, $item, $args, $depth){
+function handl_utm_nav_menu_link_attributes($atts, $item, $args){
 	if (isset($atts['href']) && $atts['href'] != ''){
 		$atts['href'] = add_query_arg( HUGGenerateUTMsForURL(), $atts['href'] );
 	}
 	return $atts; 
 }
-add_filter('nav_menu_link_attributes', 'handl_utm_nav_menu_link_attributes', 10 ,4);
+add_filter('nav_menu_link_attributes', 'handl_utm_nav_menu_link_attributes', 10 ,3);
 
 function handl_admin_notice__success() {
     $field = 'check_v252_doc';

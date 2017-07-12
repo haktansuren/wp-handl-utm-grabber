@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: utm,grabber,shortcodes,gclid,contact form 7,leads,collect,collect leads
 Requires at least: 3.6.0
 Tested up to: 4.8
-Stable tag: 2.5.8
+Stable tag: 2.5.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,8 @@ This section describes how to install the plugin and get it working.
 1. Append UTM variables to all URLs automatically.
 
 == Changelog ==
+= 2.5.9 =
+* Bugfix: Initialize SERVER variables and fix nav_menu_link_attributes  
 
 = 2.5.8 =
 * Bugfix: Visual Composer Accordion/Tabs fix (Append UTM feature conflict). Thanks [@radasonea](https://wordpress.org/support/topic/accordion-visual-doesnt-work-after-plugin-activates/)   
