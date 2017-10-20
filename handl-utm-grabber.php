@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.9
+Version: 2.5.10
 Author URI: http://www.haktansuren.com/
 */
 
@@ -62,7 +62,10 @@ add_filter('salesforce_w2l_field_value', 'handl_utm_grabber_enable_shortcode');
 add_filter( 'wpcf7_form_elements', 'handl_utm_grabber_enable_shortcode' );
 
 function handl_utm_grabber_couponhunt_theme_support($value, $post_id, $field){
-	return add_query_arg( HUGGenerateUTMsForURL(), $value );
+	if ( get_option( 'hug_append_all' ) == 1 )
+		return add_query_arg( HUGGenerateUTMsForURL(), $value );
+	else
+		return $value;
 }
 add_filter( "acf/load_value/name=url", "handl_utm_grabber_couponhunt_theme_support", 10, 3);
 
@@ -169,7 +172,7 @@ add_action('woocommerce_checkout_update_order_meta', 'HandLUTMGrabberWooCommerce
 //add_filter('smile_render_setting', 'handl_utm_grabber_setting',10,1);
 
 function handl_utm_nav_menu_link_attributes($atts, $item, $args){
-	if (isset($atts['href']) && $atts['href'] != ''){
+	if (isset($atts['href']) && $atts['href'] != '' && get_option( 'hug_append_all' ) == 1){
 		$atts['href'] = add_query_arg( HUGGenerateUTMsForURL(), $atts['href'] );
 	}
 	return $atts; 

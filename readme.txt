@@ -3,8 +3,8 @@ Contributors: haktansuren
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,grabber,shortcodes,gclid,contact form 7,leads,collect,collect leads
 Requires at least: 3.6.0
-Tested up to: 4.8
-Stable tag: 2.5.9
+Tested up to: 4.8.2
+Stable tag: 2.5.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,9 @@ This section describes how to install the plugin and get it working.
 1. Append UTM variables to all URLs automatically.
 
 == Changelog ==
+= 2.5.10 =
+* Bugfix: Fix for append UTM variables to all the links: it was adding the UTMs even though the feature is turned off.
+
 = 2.5.9 =
 * Bugfix: Initialize SERVER variables and fix nav_menu_link_attributes  
 
