@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.5.11
+Version: 2.5.12
 Author URI: http://www.haktansuren.com/
 */
 
@@ -17,7 +17,7 @@ function CaptureUTMs(){
 		$_COOKIE['handl_original_ref'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : ''; 
 
 	if (!isset($_COOKIE['handl_landing_page'])) 
-		$_COOKIE['handl_landing_page'] = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+		$_COOKIE['handl_landing_page'] = ( isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' ) . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 	
 	if(isset($_SERVER["HTTP_X_FORWARDED_FOR"]) && $_SERVER["HTTP_X_FORWARDED_FOR"] != "")
 		$_COOKIE['handl_ip'] = $_SERVER["HTTP_X_FORWARDED_FOR"];
@@ -25,7 +25,7 @@ function CaptureUTMs(){
 		$_COOKIE['handl_ip'] = $_SERVER["REMOTE_ADDR"];
 	
 	$_COOKIE['handl_ref'] =  isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : ''; 
-	$_COOKIE['handl_url'] =  isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];;
+	$_COOKIE['handl_url'] =  ( isset($_SERVER["HTTPS"]) ? 'https://' : 'http://' ) . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 	
 	$fields = array('utm_source','utm_medium','utm_term', 'utm_content', 'utm_campaign', 'gclid', 'handl_original_ref', 'handl_landing_page', 'handl_ip', 'handl_ref', 'handl_url', 'email', 'username');
        
@@ -38,7 +38,13 @@ function CaptureUTMs(){
 		}else{
 			$cookie_field = '';
 		}
-		setcookie($field, $cookie_field , time()+60*60*24*30, '/' );
+		
+		$domain = $_SERVER["SERVER_NAME"];
+		if ( strtolower( substr($domain, 0, 4) ) == 'www.' ) $domain = substr($domain, 4); 
+        if ( substr($domain, 0, 1) != '.' ) $domain = '.'.$domain; 
+		
+		setcookie($field, $cookie_field , time()+60*60*24*30, '/', $domain );
+
 		$_COOKIE[$field] = $cookie_field;
 
 		add_shortcode($field, create_function('',"return urldecode('$_COOKIE[$field]');"));

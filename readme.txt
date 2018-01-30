@@ -3,8 +3,8 @@ Contributors: haktansuren
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,grabber,shortcodes,gclid,contact form 7,leads,collect,collect leads
 Requires at least: 3.6.0
-Tested up to: 4.9.1
-Stable tag: 2.5.11
+Tested up to: 4.9.2
+Stable tag: 2.5.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,9 @@ This section describes how to install the plugin and get it working.
 1. Append UTM variables to all URLs automatically.
 
 == Changelog ==
+= 2.5.12 =
+* Bugfix for [handl_landing_page] and [handl_url]: the URL was not populating on secure sites (https://). Subdomain suport for all the UTM variables and other shortcodes. Special thanks to David W for sponsoring the update. 
+
 = 2.5.11 =
 * Security Bugfix: Potential XSS attack using cookies. Special thanks to Robert Tubridy for reporting. 
 
